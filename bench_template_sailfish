@@ -1,0 +1,11 @@
+#!/bin/bash
+
+Soft="docker run --rm -v $PWD:$PWD amatsus/sailfish:0.6.3"
+Index="/data/mapping_index/sailfish_index/GRCm38_cdna_all"
+Reads="/data/quartz_div100_rename"
+Outdir=$PWD/$1
+
+if [ ! -e $Outdir/XXXXX ]; then
+    mkdir $Outdir/XXXXX
+fi
+(time $Soft "quant -i $Index -l \"T=PE:O=><:S=U\" -1 $Reads/XXXXX_1.fastq -2 $Reads/XXXXX_2.fastq -o $Outdir/XXXXX/") >& $Outdir/XXXXX/sailfish_XXXXX.log
